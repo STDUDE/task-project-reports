@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!--property name="connection.url">jdbc:mysql://localhost:3306</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">123123</property>
+        <property name="show_sql">true</property-->
+
+        <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-247-127-6.eu-west-1.compute.amazonaws.com:5432/dd6bgjt5famkj5?user=tushgntglnubbm&amp;password=M-T3pQVrz99OOAPYxMw5OVXd48</property>
+        <!--<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres?user=postgres&amp;password=123123</property>-->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <!--<property name="hibernate.connection.username">postgres</property>-->
+        <!--<property name="hibernate.connection.password">123123</property>-->
+        <property name="hibernate.connection.username">tushgntglnubbm</property>
+        <property name="hibernate.connection.password">M-T3pQVrz99OOAPYxMw5OVXd48</property>
+
+        <property name="hibernate.archive.autodetection">class</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hbm2ddl.auto">update</property>
+
+        <mapping class="com.task.reports.domain.Reports"/>
+
+        <!--<mapping class="com.springapp.mvc.domain.MachineOrder"/>-->
+        <!--<mapping class="com.springapp.mvc.domain.User"/>-->
+
+    </session-factory>
+</hibernate-configuration>

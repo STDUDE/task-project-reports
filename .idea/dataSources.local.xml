@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="PostgreSQL - dd6bgjt5famkj5@ec2-54-247-127-6.eu-west-1.compute.amazonaws.com" uuid="8b6015e4-8111-4ebd-a6ef-26fbb8646668">
+      <secret-storage>master_key</secret-storage>
+      <user-name>tushgntglnubbm</user-name>
+      <schema-pattern>dd6bgjt5famkj5.pg_catalog dd6bgjt5famkj5.public</schema-pattern>
+      <default-schemas>dd6bgjt5famkj5.public</default-schemas>
+      <ssh-properties>
+        <enabled>false</enabled>
+        <proxy-host>ec2-54-247-127-6.eu-west-1.compute.amazonaws.com</proxy-host>
+        <proxy-port>5432</proxy-port>
+        <secret-storage>master_key</secret-storage>
+        <user>tushgntglnubbm</user>
+        <use-password>true</use-password>
+        <password>dfe7df87dffedf99dfdadffbdffcdfd8dfd0df93df93dfe5dfe5dfebdffadff3dfd2dfe7dfdddf9fdfe5dffcdff2dfcedf9edf92</password>
+      </ssh-properties>
+      <ssl-config>
+        <enabled>true</enabled>
+      </ssl-config>
+    </data-source>
+    <data-source name="PostgreSQL - postgres@localhost" uuid="1a0dc44e-df1e-47c8-a945-d392f6ed71df">
+      <secret-storage>master_key</secret-storage>
+      <user-name>postgres</user-name>
+      <schema-pattern>postgres.pg_catalog postgres.public</schema-pattern>
+      <default-schemas>postgres.public</default-schemas>
+    </data-source>
+  </component>
+</project>

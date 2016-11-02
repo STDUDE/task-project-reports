@@ -59,7 +59,7 @@
               p:username="${spring.datasource.user}"
               p:password="${spring.datasource.password}"
               p:driverClassName="${spring.datasource.driverClassName}"
-              p:validationQuery="SELECT 1 FROM users"
+              p:validationQuery="SELECT 1 FROM reports"
               p:maxActive="${spring.datasource.maxActive}"
               p:minIdle="${spring.datasource.minIdle}"
               p:maxWait="${spring.datasource.maxWait}"

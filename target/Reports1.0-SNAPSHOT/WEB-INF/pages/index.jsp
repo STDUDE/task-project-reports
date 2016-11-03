@@ -19,7 +19,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="resources/css/bootstrap-datepicker3.min.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="resources/css/bootstrap-datepicker3.min.css" type="text/css" media="screen"/>
 
 
     <!-- Customizable CSS -->
@@ -27,9 +27,6 @@
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
-
-    <!-- Icons/Glyphs -->
-    <link rel="stylesheet" href="resources/css/font-awesome.min.css" type="text/css" media="screen"/>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="resources/images/favicon.ico">
@@ -42,13 +39,13 @@
     <div class="container">
         <c:if test="${!empty performers}">
             <div id="filter-form">
-                <form:form method="get" action="/">
+                <form method="get" action="/">
                     <section>
                         <h2 class="content bgcolor-4">Dates</h2>
                         <div class="input-daterange input-group" id="datepicker">
-                            <input type="text" class="input-sm form-control" name="start" />
+                            <input type="text" class="input-sm form-control" id="start" name="start"/>
                             <span class="input-group-addon">to</span>
-                            <input type="text" class="input-sm form-control" name="end" />
+                            <input type="text" class="input-sm form-control" id="end" name="end"/>
                         </div>
                     </section>
                     <section>
@@ -64,98 +61,142 @@
                         <h2 class="content bgcolor-4"><spring:message code="commons.timePeriod"/></h2>
                         <select id="timePeriod">
                             <c:forEach items="${timePeriod}" var="period" varStatus="loop">
-                                <option>${period}</option>
+                                <option value="period${loop.index+1}" id="period${loop.index+1}">${period}</option>
                             </c:forEach>
                         </select>
                     </section>
                     <input name="find" type="submit" class="button" value="Показать">
-                </form:form>
+                </form>
             </div>
         </c:if>
-
-        <div id="result-tab">
-
-        </div>
-
-
+        <c:if test="${!empty reports}">
+            <div id="result-tab">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>StartDate</th>
+                            <th>EndDate</th>
+                            <th>Performer</th>
+                            <th>Activity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${reports}" var="report" varStatus="loop">
+                        <tr>
+                            <td>${loop.index+1}</td>
+                            <td>${report.startDate}</td>
+                            <td>${report.endDate}</td>
+                            <td>${report.performer}</td>
+                            <td>${report.activity}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </c:if>
     </div>
-    </div>
+</div>
 
-    <script src="resources/js/jquery-3.1.1.js"></script>
+<script src="resources/js/jquery-3.1.1.js"></script>
+<script src="resources/js/moment.js"></script>
 
-    <script src="resources/js/bootstrap-datepicker.min.js"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.ar.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.az.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.bg.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.bs.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.ca.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.cs.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.cy.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.da.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.de.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.el.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.en-GB.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.et.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.eu.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.fa.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.fi.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.fo.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.fr.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.fr-CH.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.gl.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.he.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.hr.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.hu.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.hy.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.id.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.is.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.it.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.it-CH.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.ja.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.ka.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.kh.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.kk.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.kr.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.lt.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.lv.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.mk.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.ms.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.nb.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.nl.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.nl-BE.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.no.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.pl.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.pt-BR.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.pt.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.ro.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.rs.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.rs-latin.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.ru.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.sk.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.sl.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.sq.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.sr.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.sr-latin.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.sv.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.sw.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.th.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.tr.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.uk.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.zh-CN.min.js" charset="UTF-8"></script>
-    <script src="resources/js/locales/bootstrap-datepicker.zh-TW.min.js" charset="UTF-8"></script>
+<script src="resources/js/bootstrap-datepicker.min.js"></script>
+<script src="resources/js/locales/bootstrap-datepicker.en-GB.min.js" charset="UTF-8"></script>
 
-    <script>
+
+<script>
+    $(document).ready(function () {
         $('.input-daterange').datepicker({
             format: "M dd, yyyy",
             weekStart: 1,
+            endDate: "today",
             todayBtn: "linked",
             clearBtn: true,
             daysOfWeekHighlighted: "0,6",
             todayHighlight: true
         });
 
-    </script>
+        $(".datepicker table tr td, .datepicker table tr th").css("border-radius", "0");
+
+        var quarterAdjustment = 1;
+
+        var sDateLastQtr = moment().subtract(quarterAdjustment, 'quarter').startOf('quarter');
+        var eDateLastQtr = moment().subtract(quarterAdjustment, 'quarter').endOf('quarter');
+
+        var $datepicker = $('.input-daterange');
+        var startDate = sDateLastQtr.toDate();
+        var endDate = eDateLastQtr.toDate();
+
+        $datepicker.find('#start').datepicker('update', startDate);
+        $datepicker.find('#end').datepicker('update', endDate);
+        $datepicker.data('datepicker').updateDates();
+
+        $('#timePeriod').on("change", function (event) {
+            var id = $(this).children(":selected").attr("value");
+            var param = "";
+
+            switch (id) {
+                case "period1":
+                {
+                    //Last Qtr
+                    quarterAdjustment = 1;
+                    param = "quarter";
+                }
+                    break;
+                case "period2":
+                {
+                    //Last Month
+                    quarterAdjustment = 1;
+                    param = "month";
+                }
+                    break;
+                case "period3":
+                {
+                    //Last Calendar Year
+                    quarterAdjustment = 1;
+                    param = "year";
+                }
+                    break;
+                case "period4":
+                {
+                    //Current Year to Date
+                    quarterAdjustment = 0;
+                    param = "year";
+                }
+                    break;
+                case "period5":
+                {
+                    //Current Qtr to Date
+                    quarterAdjustment = 0;
+                    param = "quarter";
+                }
+                    break;
+                case "period6":
+                {
+                    //Current Month to Date
+                    quarterAdjustment = 0;
+                    param = "month";
+                }
+                    break;
+            }
+
+            var sDate = moment().subtract(quarterAdjustment, param).startOf(param);
+            console.log(sDate.format('MMM DD, YYYY'));
+            var eDate = moment().subtract(quarterAdjustment, param).endOf(param);
+            console.log(eDate.format('MMM DD, YYYY'));
+
+            var $datepicker = $('.input-daterange');
+            var startDate = sDate.toDate();
+            var endDate = (quarterAdjustment == 0) ? moment().startOf('day').toDate() : eDate.toDate();
+
+            $datepicker.find('#start').datepicker('update', startDate);
+            $datepicker.find('#end').datepicker('update', endDate);
+            $datepicker.data('datepicker').updateDates();
+        });
+
+    });
+
+</script>
 </body>
 </html>

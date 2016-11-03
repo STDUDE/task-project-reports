@@ -22,7 +22,7 @@
     <data-source name="PostgreSQL - postgres@localhost" uuid="1a0dc44e-df1e-47c8-a945-d392f6ed71df">
       <secret-storage>master_key</secret-storage>
       <user-name>postgres</user-name>
-      <schema-pattern>postgres.pg_catalog postgres.public</schema-pattern>
+      <schema-pattern>postgres.public</schema-pattern>
       <default-schemas>postgres.public</default-schemas>
     </data-source>
   </component>

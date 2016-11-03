@@ -8,6 +8,8 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -26,11 +28,20 @@ public class ReportsDAOImpl implements ReportsDAO {
     @SuppressWarnings("unchecked")
     public List<Reports> listReportsFiltered(Date startDate, Date endDate, String performer) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Reports.class);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         if (startDate != null) {
-            criteria.add(Restrictions.eq("start_date", startDate));
+            try {
+                criteria.add(Restrictions.ge("startDate", sdf.parse(sdf.format(startDate))));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
         if (endDate != null) {
-            criteria.add(Restrictions.eq("end_date", endDate));
+            try {
+                criteria.add(Restrictions.le("endDate", sdf.parse(sdf.format(endDate))));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
         if (performer != null) {
             criteria.add(Restrictions.eq("performer", performer));

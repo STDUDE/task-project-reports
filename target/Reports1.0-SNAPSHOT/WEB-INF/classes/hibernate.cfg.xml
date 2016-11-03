@@ -25,6 +25,7 @@
         <property name="hbm2ddl.auto">update</property>
 
         <mapping class="com.task.reports.domain.Reports"/>
+        <!--<mapping class="com.task.reports.domain.ReportsEntity"/>-->
 
         <!--<mapping class="com.springapp.mvc.domain.MachineOrder"/>-->
         <!--<mapping class="com.springapp.mvc.domain.User"/>-->

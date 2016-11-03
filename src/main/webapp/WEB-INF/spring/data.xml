@@ -27,32 +27,6 @@
           p:location="/WEB-INF/utils.properties" />
 
     <!-- Непосредственно бин dataSource -->
-    <!--bean id="dataSource"
-          class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-          p:driverClassName="${jdbc.driverClassName}"
-          p:url="${jdbc.databaseurl}"
-          p:username="${jdbc.username}"
-          p:password="${jdbc.password}" /-->
-
-        <!--bean class="java.net.URI" id="dbUrl">
-            <constructor-arg value="${DATABASE_URL}"/>
-        </bean>
-        <bean id="dataSource"
-              class="org.apache.tomcat.jdbc.pool.DataSource"
-              p:url="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"
-              p:username="#{ @dbUrl.getUserInfo().split(':')[0] }"
-              p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"
-              p:driverClassName="${spring.datasource.driverClassName}"
-              p:validationQuery="SELECT 1 FROM users"
-              p:maxActive="${spring.datasource.maxActive}"
-              p:minIdle="${spring.datasource.minIdle}"
-              p:maxWait="${spring.datasource.maxWait}"
-              p:initialSize="${spring.datasource.initialSize}"
-              p:maxIdle="${spring.datasource.maxIdle}"
-              p:testOnBorrow="${spring.datasource.testOnBorrow}"
-              p:removeAbandoned="${spring.datasource.removeAbandoned}"
-              p:testOnConnect="${spring.datasource.testOnConnect}"
-              p:testWhileIdle="${spring.datasource.testWhileIdle}"/-->
     <bean id="dataSource"
               class="org.apache.tomcat.jdbc.pool.DataSource"
               p:url="${spring.datasource.url}"

@@ -1,5 +1,6 @@
 package com.task.reports.web;
 
+import com.task.reports.domain.Reports;
 import com.task.reports.service.ReportsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,11 +39,19 @@ public class ReportsMainController {
                              @RequestParam(value = "end", required = false) Date endDate,
                              @RequestParam(value = "performer", required = false) String performer,
                              Map<String,Object> map) {
-        if(startDate == null && endDate == null && performer == null) {
-            map.put("reports", reportsService.listReports());
+        System.out.println("start: " + startDate+ " end: " + endDate);
+        List<Reports> reports;
+        if(startDate == null && endDate == null && (performer == null || performer.equals("All performers"))) {
+            reports = reportsService.listReports();
+
         } else {
-            map.put("reports", reportsService.listReportsFiltered(startDate, endDate, performer));
+            reports = reportsService.listReportsFiltered(startDate, endDate, performer);
         }
+        for(int i = 0; i < reports.size(); i++) {
+            System.out.println("performer: " + reports.get(i).getPerformer()+ " activity: " + reports.get(i).getActivity());
+
+        }
+        map.put("reports", reports);
         map.put("performers", reportsService.listPerformers());
         map.put("timePeriod", timePeriod);
         return new ModelAndView("index", map);

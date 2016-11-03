@@ -37,10 +37,9 @@
 <div class="wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 center-block">
+            <div class="col-md-12 center-block">
                 <div class="info-404 text-center">
                     <h2 class="primary-color inner-bottom-xs">403</h2>
-
                     <h1 class="lead"><spring:message code="error.full403"/></h1>
                 </div>
             </div>

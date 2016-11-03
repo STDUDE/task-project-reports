@@ -37,6 +37,33 @@
 
 <div class="wrapper">
     <div class="container">
+        <c:if test="${!empty reports}">
+            <section class="bgcolor-2">
+                <table class="result-tab">
+                    <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>StartDate</th>
+                        <th>EndDate</th>
+                        <th>Performer</th>
+                        <th>Activity</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${reports}" var="report" varStatus="loop">
+                        <tr>
+                            <td>${loop.index+1}</td>
+                            <td>${report.startDate}</td>
+                            <td>${report.endDate}</td>
+                            <td>${report.performer}</td>
+                            <td>${report.activity}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </section>
+        </c:if>
+        <hr>
         <c:if test="${!empty performers}">
             <div id="filter-form">
                 <form method="get" action="/">
@@ -65,35 +92,9 @@
                             </c:forEach>
                         </select>
                     </section>
-                    <input name="find" type="submit" class="button" value="Показать">
+                    <input name="show" type="submit" class="button" value="Show">
                 </form>
             </div>
-        </c:if>
-        <c:if test="${!empty reports}">
-            <section class="bgcolor-2">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>№</th>
-                        <th>StartDate</th>
-                        <th>EndDate</th>
-                        <th>Performer</th>
-                        <th>Activity</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${reports}" var="report" varStatus="loop">
-                        <tr>
-                            <td>${loop.index+1}</td>
-                            <td>${report.startDate}</td>
-                            <td>${report.endDate}</td>
-                            <td>${report.performer}</td>
-                            <td>${report.activity}</td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </section>
         </c:if>
     </div>
 </div>
@@ -103,100 +104,8 @@
 
 <script src="resources/js/bootstrap-datepicker.min.js"></script>
 <script src="resources/js/locales/bootstrap-datepicker.en-GB.min.js" charset="UTF-8"></script>
+<script src="resources/js/main.js" charset="UTF-8"></script>
 
 
-<script>
-    $(document).ready(function () {
-        $('.input-daterange').datepicker({
-            format: "M dd, yyyy",
-            weekStart: 1,
-            endDate: "today",
-            todayBtn: "linked",
-            clearBtn: true,
-            daysOfWeekHighlighted: "0,6",
-            todayHighlight: true
-        });
-
-        $(".datepicker table tr td, .datepicker table tr th").css("border-radius", "0");
-
-        var quarterAdjustment = 1;
-
-        var sDateLastQtr = moment().subtract(quarterAdjustment, 'quarter').startOf('quarter');
-        var eDateLastQtr = moment().subtract(quarterAdjustment, 'quarter').endOf('quarter');
-
-        var $datepicker = $('.input-daterange');
-        var startDate = sDateLastQtr.toDate();
-        var endDate = eDateLastQtr.toDate();
-
-        $datepicker.find('#start').datepicker('update', startDate);
-        $datepicker.find('#end').datepicker('update', endDate);
-        $datepicker.data('datepicker').updateDates();
-
-        $('#timePeriod').on("change", function (event) {
-            var id = $(this).children(":selected").attr("value");
-            var param = "";
-
-            switch (id) {
-                case "period1":
-                {
-                    //Last Qtr
-                    quarterAdjustment = 1;
-                    param = "quarter";
-                }
-                    break;
-                case "period2":
-                {
-                    //Last Month
-                    quarterAdjustment = 1;
-                    param = "month";
-                }
-                    break;
-                case "period3":
-                {
-                    //Last Calendar Year
-                    quarterAdjustment = 1;
-                    param = "year";
-                }
-                    break;
-                case "period4":
-                {
-                    //Current Year to Date
-                    quarterAdjustment = 0;
-                    param = "year";
-                }
-                    break;
-                case "period5":
-                {
-                    //Current Qtr to Date
-                    quarterAdjustment = 0;
-                    param = "quarter";
-                }
-                    break;
-                case "period6":
-                {
-                    //Current Month to Date
-                    quarterAdjustment = 0;
-                    param = "month";
-                }
-                    break;
-            }
-
-            var sDate = moment().subtract(quarterAdjustment, param).startOf(param);
-            console.log(sDate.format('MMM DD, YYYY'));
-            var eDate = moment().subtract(quarterAdjustment, param).endOf(param);
-            console.log(eDate.format('MMM DD, YYYY'));
-
-            var $datepicker = $('.input-daterange');
-            var startDate = sDate.toDate();
-            var endDate = (quarterAdjustment == 0) ? moment().startOf('day').toDate() : eDate.toDate();
-
-            $datepicker.find('#start').datepicker('update', startDate);
-            $datepicker.find('#end').datepicker('update', endDate);
-            $datepicker.data('datepicker').updateDates();
-        });
-
-    });
-
-</script>
 </body>
 </html>

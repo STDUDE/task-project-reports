@@ -38,20 +38,23 @@ public class ReportsMainController {
     public ModelAndView home(@RequestParam(value = "start", required = false) Date startDate,
                              @RequestParam(value = "end", required = false) Date endDate,
                              @RequestParam(value = "performer", required = false) String performer,
+                             @RequestParam(value = "show", required = false) String show,
                              Map<String,Object> map) {
-        System.out.println("start: " + startDate+ " end: " + endDate);
         List<Reports> reports;
-        if(startDate == null && endDate == null && (performer == null || performer.equals("All performers"))) {
-            reports = reportsService.listReports();
-
-        } else {
-            reports = reportsService.listReportsFiltered(startDate, endDate, performer);
+       /* System.out.println("start: " + startDate+ " end: " + endDate);*/
+        if(performer != null && performer.equals("All performers")) {
+            performer = null;
         }
-        for(int i = 0; i < reports.size(); i++) {
-            System.out.println("performer: " + reports.get(i).getPerformer()+ " activity: " + reports.get(i).getActivity());
+        if(show != null && show.toUpperCase().equals("SHOW")) {
+            if(startDate == null && endDate == null && performer == null) {
+                reports = reportsService.listReports();
 
+            } else {
+                reports = reportsService.listReportsFiltered(startDate, endDate, performer);
+            }
+            map.put("reports", reports);
         }
-        map.put("reports", reports);
+
         map.put("performers", reportsService.listPerformers());
         map.put("timePeriod", timePeriod);
         return new ModelAndView("index", map);

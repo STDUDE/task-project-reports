@@ -38,16 +38,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 center-block bgcolor-2">
-                <div class="info-500 text-center">
-                    <h2 class="content primary-color inner-bottom-xs bgcolor-11">500 - <spring:message
-                            code="error.500"/></h2>
-                    <h1 class="lead"><spring:message code="error.full500"/></h1>
+                <div class="info-400 text-center">
+                    <h2 class="content primary-color inner-bottom-xs bgcolor-11">400 - <spring:message
+                            code="error.400"/></h2>
+                    <h1 class="lead"><spring:message code="error.full400"/></h1>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <script src="resources/js/jquery-3.1.1.js"></script>
 <script src="resources/js/moment.js"></script>
 

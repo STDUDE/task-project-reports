@@ -72,4 +72,7 @@ public class ReportsMainController {
     @RequestMapping(value = "/error500", method = RequestMethod.GET)
     public void error500() { }
 
+    @RequestMapping(value = "/error400", method = RequestMethod.GET)
+    public void error400() { }
+
 }

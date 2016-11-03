@@ -17,12 +17,12 @@ public class ReportsServiceImpl implements ReportsService {
 
     @Transactional
     public List<Reports> listReports() {
-        return (List<Reports>)reportsDAO.listReports();
+        return reportsDAO.listReports();
     }
 
     @Transactional
     public List<Reports> listReportsFiltered(Date startDate, Date endDate, String performer) {
-        return (List<Reports>)reportsDAO.listReportsFiltered(startDate, endDate, performer);
+        return reportsDAO.listReportsFiltered(startDate, endDate, performer);
     }
 
     @Transactional

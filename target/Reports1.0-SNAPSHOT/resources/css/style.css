@@ -1,10 +1,12 @@
 @import url(http://allfont.ru/css/?fonts=avantgardectt);
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
 body{
     display: block;
     min-height: 100%;
     background: url("images/bg.jpg") repeat;
     color: #404d5b;
-    font: normal 1.05em 'AvantGardeCTT', arial;
+    font: normal 1.05em 'Raleway', sans-serif;
     text-align: center;
 }
 hr {
@@ -16,11 +18,16 @@ hr {
 }
 
 .info {
+    text-align: left;
     padding: 2px;
-    font: normal 18px 'AvantGardeCTT', arial;
+    font: normal 10px 'Raleway', sans-serif;
+    color: #fff;
+    position: absolute;
+    display: none;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+    z-index: 100;
 }
 
 select, .button {
@@ -31,7 +38,7 @@ select, .button {
     border: 0;
     padding: 10px 0 10px 10px;
     margin: 10px;
-    font: normal 1.55em 'AvantGardeCTT', arial;
+    font: normal 1.55em 'Raleway', sans-serif;
 }
 
 td {
@@ -47,12 +54,39 @@ td {
 
 .result-tab {
     width: 100%;
-    font: normal 1.2em 'AvantGardeCTT', arial;
+    font: normal 1.2em 'Raleway', sans-serif;
+    margin-top: 10px;
 }
 
 .result-tab thead {
     background: #ad473c;
     color: #f9f9f9;
+    font: normal 1.2em 'Raleway', sans-serif;
+}
+
+.result-tab th, td {
+    text-align: center;
+    font: normal 1.2em 'Raleway', sans-serif;
+    padding: 5px;
+}
+
+.error {
+    content: url("images/k.png");
+    background: rgba(255, 255, 255, 0);
+}
+
+.correct {
+    content:url("images/g.png");
+    background: rgba(255, 255, 255, 0);
+}
+
+.wrong {
+    color: #e90000;
+}
+
+.normal {
+    font-weight: normal;
+    color: #222;
 }
 
 .bgcolor-1 { background: #f0efee; }
@@ -65,3 +99,4 @@ td {
 .bgcolor-8 { background: #3d4444; color: #fff; }
 .bgcolor-9 { background: #8781bd; color: #fff; }
 .bgcolor-10 { background: #6C6C6C; }
+.bgcolor-11 { background: #ad473c; color: #f9f9f9;}

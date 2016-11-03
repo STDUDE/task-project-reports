@@ -87,4 +87,75 @@ $(document).ready(function () {
         $datepicker.data('datepicker').updateDates();
     });
 
+    var jVal = {
+        'startDate': function () {
+
+            $('body').append('<div id="startDateInfo" class="info"></div>');
+
+            var startDateInfo = $('#startDateInfo');
+            var ele = $('#start');
+            var pos = ele.offset();
+
+            startDateInfo.css({
+                top: pos.top + 2.5,
+                left: pos.left + ele.width() - 10
+            });
+
+            if (ele.val().length == 0) {
+                jVal.errors = true;
+                startDateInfo.removeClass('correct').addClass('error').html('&larr; Incorrect date ').show();
+                ele.removeClass('normal').addClass('wrong');
+            } else {
+                startDateInfo.removeClass('error').addClass('correct').html('&radic;').show();
+                ele.removeClass('wrong').addClass('normal');
+            }
+        },
+        'endDate': function () {
+
+            $('body').append('<div id="endDateInfo" class="info"></div>');
+
+            var endDateInfo = $('#endDateInfo');
+            var ele = $('#end');
+            var pos = ele.offset();
+
+            endDateInfo.css({
+                top: pos.top + 2.5,
+                left: pos.left + ele.width() - 10
+            });
+
+            if (ele.val().length == 0) {
+                jVal.errors = true;
+                endDateInfo.removeClass('correct').addClass('error').html('&larr; Incorrect date ').show();
+                ele.removeClass('normal').addClass('wrong');
+            } else {
+                endDateInfo.removeClass('error').addClass('correct').html('&radic;').show();
+                ele.removeClass('wrong').addClass('normal');
+            }
+        },
+        'sendIt': function () {
+            if (!jVal.errors) {
+                $('#startDateInfo').remove();
+                $('#endDateInfo').remove();
+                var input = $("<input>")
+                    .attr("type", "hidden")
+                    .attr("name", "show").val("show");
+                $('#form').append($(input));
+                $('#form').submit();
+            }
+        }
+    };
+
+    $('#show').click(function (){
+        var obj = $.browser ? $('body') : $('html');
+        obj.animate({ scrollTop: $('#form').offset().top }, 750, function (){
+            jVal.errors = false;
+            jVal.startDate();
+            jVal.endDate();
+            jVal.sendIt();
+        });
+        return false;
+    });
+
+    $('#start').change(jVal.startDate);
+    $('#end').change(jVal.endDate);
 });

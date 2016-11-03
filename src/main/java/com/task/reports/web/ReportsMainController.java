@@ -34,13 +34,14 @@ public class ReportsMainController {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method =  { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView home(@RequestParam(value = "start", required = false) Date startDate,
                              @RequestParam(value = "end", required = false) Date endDate,
                              @RequestParam(value = "performer", required = false) String performer,
                              @RequestParam(value = "show", required = false) String show,
                              Map<String,Object> map) {
         List<Reports> reports;
+        String result = "No results for this request";
        /* System.out.println("start: " + startDate+ " end: " + endDate);*/
         if(performer != null && performer.equals("All performers")) {
             performer = null;
@@ -53,6 +54,8 @@ public class ReportsMainController {
                 reports = reportsService.listReportsFiltered(startDate, endDate, performer);
             }
             map.put("reports", reports);
+            if(reports.size() == 0)
+                map.put("result", result);
         }
 
         map.put("performers", reportsService.listPerformers());

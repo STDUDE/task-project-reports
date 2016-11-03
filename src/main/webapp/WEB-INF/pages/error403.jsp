@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="resources/css/style.css" type="text/css" media="screen">
 
     <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="resources/images/favicon.ico">
@@ -37,9 +37,9 @@
 <div class="wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 center-block">
+            <div class="col-md-12 center-block bgcolor-2">
                 <div class="info-404 text-center">
-                    <h2 class="primary-color inner-bottom-xs">403</h2>
+                    <h2 class="content primary-color inner-bottom-xs bgcolor-11">403 - <spring:message code="error.403"/></h2>
                     <h1 class="lead"><spring:message code="error.full403"/></h1>
                 </div>
             </div>

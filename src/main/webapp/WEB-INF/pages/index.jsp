@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="resources/css/style.css" type="text/css" media="screen">
 
     <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="resources/images/favicon.ico">
@@ -37,6 +37,11 @@
 
 <div class="wrapper">
     <div class="container">
+        <c:if test="${!empty result}">
+            <section>
+                <h2 class="content bgcolor-2">${result}</h2>
+            </section>
+        </c:if>
         <c:if test="${!empty reports}">
             <section class="bgcolor-2">
                 <table class="result-tab">
@@ -52,11 +57,11 @@
                     <tbody>
                     <c:forEach items="${reports}" var="report" varStatus="loop">
                         <tr>
-                            <td>${loop.index+1}</td>
+                            <td class="bgcolor-3">${loop.index+1}</td>
                             <td>${report.startDate}</td>
-                            <td>${report.endDate}</td>
+                            <td class="bgcolor-3">${report.endDate}</td>
                             <td>${report.performer}</td>
-                            <td>${report.activity}</td>
+                            <td class="bgcolor-3">${report.activity}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -66,7 +71,7 @@
         <hr>
         <c:if test="${!empty performers}">
             <div id="filter-form">
-                <form method="get" action="/">
+                <form method="get" id="form" action="/">
                     <section>
                         <h2 class="content bgcolor-4">Dates</h2>
                         <div class="input-daterange input-group" id="datepicker">
@@ -92,7 +97,7 @@
                             </c:forEach>
                         </select>
                     </section>
-                    <input name="show" type="submit" class="button" value="Show">
+                    <input id="show" type="submit" class="button" value="Show">
                 </form>
             </div>
         </c:if>
